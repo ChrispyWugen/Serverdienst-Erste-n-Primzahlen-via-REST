@@ -1,17 +1,27 @@
 package com.example.actuatorservice;
 
+/**
+ * An implementation of PrimeNumbersInteger
+ * in actuator-service
+ *
+ * @author chris
+ * @version 1.0
+ * @since 2019-Dez-05
+ */
 public class PrimeNumbersInteger {
 
 	/* ---------------------------------------- Main ---------------------------------------------------------------- */
 
 	/* ---------------------------------------- Attributes ---------------------------------------------------------- */
 
-	private int[] primeNumberList;
+	private int[] primeNumberList; //holds all calculated prime numbers
 
 	/* ---------------------------------------- Constants ----------------------------------------------------------- */
 
 	/* ---------------------------------------- Constructors -------------------------------------------------------- */
-	public PrimeNumbersInteger(int length) {
+
+
+	PrimeNumbersInteger(int length) {
 		primeNumberList = new int[length];
 
 	}
@@ -23,7 +33,7 @@ public class PrimeNumbersInteger {
 		return primeNumberList;
 	}
 
-	public void setPrimeNumberList(int[] list) { this.primeNumberList = list; }
+	void setPrimeNumberList(int[] list) { this.primeNumberList = list; }
 
 
 	/* ---------------------------------------- toString ----------------------------------------------------------- */

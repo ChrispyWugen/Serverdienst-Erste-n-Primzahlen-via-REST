@@ -1,44 +1,40 @@
 package com.example.actuatorservice;
 
 /**
- * An implementation of PrimeNumbersString
+ * An implementation of PrimeNumbersObject
  * in actuator-service
  *
  * @author chris
  * @version 1.0
- * @since 2019-Dez-05
+ * @since 2019-Dez-08
  */
-public class PrimeNumbersString {
+public class PrimeNumbersObject {
 
     /* ---------------------------------------- Main ---------------------------------------------------------------- */
 
-
-
     /* ---------------------------------------- Attributes ---------------------------------------------------------- */
 
-    private String primeNumbers = "";
+    private int[] primeNumberList; //holds all calculated prime numbers
+    private String primeNumbersString = "";
 
     /* ---------------------------------------- Constants ----------------------------------------------------------- */
 
-
-
     /* ---------------------------------------- Constructors -------------------------------------------------------- */
-    PrimeNumbersString(String s){
-        this.primeNumbers = s;
-    }
 
+
+    PrimeNumbersObject(int[] primeNumberList, String primeNumberString) {
+        this.primeNumberList = primeNumberList;
+        this.primeNumbersString = primeNumberString;
+    }
     /* ---------------------------------------- Methods ------------------------------------------------------------- */
 
 
-
     /* ---------------------------------------- S/Getters ----------------------------------------------------------- */
-    public String getPrimeNumbers() {
-        return primeNumbers;
+    public int[] getPrimeNumberList() {
+        return primeNumberList;
     }
 
-    public void setPrimeNumbers(String primeNumbers) {
-        this.primeNumbers = primeNumbers;
-    }
+    void setPrimeNumberList(int[] list) { this.primeNumberList = list; }
 
 
     /* ---------------------------------------- toString ----------------------------------------------------------- */

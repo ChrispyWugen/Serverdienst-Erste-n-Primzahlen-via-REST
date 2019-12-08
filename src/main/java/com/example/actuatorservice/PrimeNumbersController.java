@@ -5,6 +5,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+
+/**
+ * An implementation of PrimeNumbersController
+ * in actuator-service
+ *
+ * @author chris
+ * @version 1.0
+ * @since 2019-Dez-05
+ */
 @Controller
 public class PrimeNumbersController {
 
@@ -26,12 +36,36 @@ public class PrimeNumbersController {
 	@ResponseBody
 	public PrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
 
-		PrimeNumbersString primeNumbers = new PrimeNumbersString();
+		//calculate prime numbers
+		Object[] listOfPrimeNumbers = CalculatePrimeNumbers.calculate(primeCount).toArray();
 
-		//do something
+		//convert list into String with whitespaces
+		String primeNumbersString = CalculatePrimeNumbers.convertArrayToString(listOfPrimeNumbers);
+
+		// create JSON Object
+		PrimeNumbersString primeNumbers = new PrimeNumbersString(primeNumbersString);
 
 		return primeNumbers;
 	}
+
+	//http://localhost:9000/getPrimeNumbersObject?value=5
+	@GetMapping("/getPrimeNumbersObject")
+	@ResponseBody
+	public PrimeNumbersObject responseCalculationObject(@RequestParam(value="value", required=true) int primeCount) {
+
+		//calculate prime numbers
+		int[] integerListOfPrimeNumbers = CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount));
+		Object[] objectListOfPrimeNumbers = CalculatePrimeNumbers.convertToObjectArray(integerListOfPrimeNumbers);
+
+		//convert list into String with whitespaces
+		String primeNumbersString = CalculatePrimeNumbers.convertArrayToString(objectListOfPrimeNumbers);
+
+		// create JSON Object
+		PrimeNumbersObject primeNumbers = new PrimeNumbersObject(integerListOfPrimeNumbers, primeNumbersString);
+
+		return primeNumbers;
+	}
+
 
 
 

@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
  * @version 1.0
  * @since 2019-Dez-05
  */
-public class CalculatePrimeNumbers {
+class CalculatePrimeNumbers {
 
 
     /* ---------------------------------------- Main ---------------------------------------------------------------- */
@@ -32,18 +32,30 @@ public class CalculatePrimeNumbers {
 
 
     /* ---------------------------------------- Methods ------------------------------------------------------------- */
-    public static List calculate(int number){
 
+    /**
+     * Calculates the first n prime numbers
+     * @param number count of prime numbers
+     * @return primes List of prime numbers
+     */
+    static List calculate(int number){
+
+        //generate stream of integer values
         List<Integer> primes = IntStream.range(2, Integer.MAX_VALUE)
                 .filter(n -> isPrime(n))
                 .limit(number)      //Limit the number of primes here
-                .boxed()
+                .boxed()            //generate a new stream of Integers (?)
                 .collect(Collectors.toList());
 
         return primes;
     }
 
-    static boolean isPrime(int number) {
+    /**
+     * Function proofs if the given number is a prime number
+     * @param number number to proof
+     * @return
+     */
+    private static boolean isPrime(int number) {
         if(number <= 2)
             return number == 2;
         else
@@ -54,12 +66,39 @@ public class CalculatePrimeNumbers {
                             .noneMatch(n -> (number % n == 0));
     }
 
+    /**
+     * Function converts list of integers to integer array
+     * @param primes list of integer values
+     * @return
+     */
     static int[] toIntArray(List<Integer> primes){
         int[] primeNumbersList = new int[primes.size()];
         for(int i = 0;i < primeNumbersList.length;i++)
             primeNumbersList[i] = primes.get(i);
         return primeNumbersList;
 
+    }
+
+    static String convertArrayToString(Object[] listOfPrimeNumbers){
+
+        String primeNumbersString = "";
+        for(Object curInt: listOfPrimeNumbers){
+            primeNumbersString = primeNumbersString + curInt.toString() + " ";
+        }
+        // remove last whitespace
+        primeNumbersString = primeNumbersString.substring(0, primeNumbersString.length()-1);
+
+        return primeNumbersString;
+    }
+
+    static Object[] convertToObjectArray(int[] primeNumberArray){
+        Object[] primeNumbers = new Object[primeNumberArray.length];
+
+        for(int i=0; i<primeNumberArray.length; i++){
+            primeNumbers[i] = primeNumberArray[i];
+        }
+
+        return primeNumbers;
     }
 
 
