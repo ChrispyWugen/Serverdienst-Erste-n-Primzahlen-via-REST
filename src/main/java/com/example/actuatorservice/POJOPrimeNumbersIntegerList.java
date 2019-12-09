@@ -1,14 +1,14 @@
 package com.example.actuatorservice;
 
 /**
- * An implementation of PrimeNumbersInteger
+ * An implementation of POJOPrimeNumbersIntegerList
  * in actuator-service
  *
  * @author chris
  * @version 1.0
  * @since 2019-Dez-05
  */
-public class PrimeNumbersInteger {
+public class POJOPrimeNumbersIntegerList {
 
 	/* ---------------------------------------- Main ---------------------------------------------------------------- */
 
@@ -21,7 +21,7 @@ public class PrimeNumbersInteger {
 	/* ---------------------------------------- Constructors -------------------------------------------------------- */
 
 
-	PrimeNumbersInteger(int length) {
+	POJOPrimeNumbersIntegerList(int length) {
 		primeNumberList = new int[length];
 
 	}

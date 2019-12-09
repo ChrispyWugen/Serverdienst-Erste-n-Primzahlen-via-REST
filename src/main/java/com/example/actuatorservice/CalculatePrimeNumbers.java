@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 /**
  * An implementation of CalculatePrimeNumbers
- * in actuator-service
+ * Utilities class to calculate prime numbers or convert given datatypes
  *
  * @author chris
  * @version 1.0
@@ -79,6 +79,12 @@ class CalculatePrimeNumbers {
 
     }
 
+    /**
+     * Function connverts given object list of prime numbers to a string
+     * of prime numbers with whitespaces
+     * @param listOfPrimeNumbers list of prime numbers
+     * @return
+     */
     static String convertArrayToString(Object[] listOfPrimeNumbers){
 
         String primeNumbersString = "";
@@ -91,6 +97,11 @@ class CalculatePrimeNumbers {
         return primeNumbersString;
     }
 
+    /**
+     * Function converts integer array to an object array
+     * @param primeNumberArray list of prime numbers
+     * @return
+     */
     static Object[] convertToObjectArray(int[] primeNumberArray){
         Object[] primeNumbers = new Object[primeNumberArray.length];
 

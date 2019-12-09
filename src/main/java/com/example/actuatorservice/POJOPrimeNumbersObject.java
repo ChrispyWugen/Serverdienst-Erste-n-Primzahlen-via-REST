@@ -1,14 +1,14 @@
 package com.example.actuatorservice;
 
 /**
- * An implementation of PrimeNumbersObject
+ * An implementation of POJOPrimeNumbersObject
  * in actuator-service
  *
  * @author chris
  * @version 1.0
  * @since 2019-Dez-08
  */
-public class PrimeNumbersObject {
+public class POJOPrimeNumbersObject {
 
     /* ---------------------------------------- Main ---------------------------------------------------------------- */
 
@@ -22,7 +22,7 @@ public class PrimeNumbersObject {
     /* ---------------------------------------- Constructors -------------------------------------------------------- */
 
 
-    PrimeNumbersObject(int[] primeNumberList, String primeNumberString) {
+    POJOPrimeNumbersObject(int[] primeNumberList, String primeNumberString) {
         this.primeNumberList = primeNumberList;
         this.primeNumbersString = primeNumberString;
     }
@@ -31,8 +31,10 @@ public class PrimeNumbersObject {
 
     /* ---------------------------------------- S/Getters ----------------------------------------------------------- */
     public int[] getPrimeNumberList() {
-        return primeNumberList;
+        return this.primeNumberList;
     }
+
+    public String getPrimeNumbersString() { return this.primeNumbersString; }
 
     void setPrimeNumberList(int[] list) { this.primeNumberList = list; }
 

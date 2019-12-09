@@ -1,14 +1,14 @@
 package com.example.actuatorservice;
 
 /**
- * An implementation of PrimeNumbersString
+ * An implementation of POJOPrimeNumbersString
  * in actuator-service
  *
  * @author chris
  * @version 1.0
  * @since 2019-Dez-05
  */
-public class PrimeNumbersString {
+public class POJOPrimeNumbersString {
 
     /* ---------------------------------------- Main ---------------------------------------------------------------- */
 
@@ -23,7 +23,7 @@ public class PrimeNumbersString {
 
 
     /* ---------------------------------------- Constructors -------------------------------------------------------- */
-    PrimeNumbersString(String s){
+    POJOPrimeNumbersString(String s){
         this.primeNumbers = s;
     }
 
