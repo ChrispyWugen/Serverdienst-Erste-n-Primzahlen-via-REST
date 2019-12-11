@@ -15,7 +15,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PrimeNumbersApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(PrimeNumbersApplication.class, args);
+		System.out.println("--------------------");
+		System.out.println("Server start");
+		System.out.println("--------------------");
+		System.out.println("Accept modus: waiting for connection...");
+
 	}
 
 }

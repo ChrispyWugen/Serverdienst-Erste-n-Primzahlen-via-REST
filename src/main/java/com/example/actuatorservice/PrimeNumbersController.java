@@ -21,11 +21,16 @@ public class PrimeNumbersController {
 	@ResponseBody
 	public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value="value", required=true) int primeCount) {
 
+		System.out.println("Connection established");
+		System.out.println("Received prime numbers request for integer list with value " + primeCount);
+
 		//create JSON container object
 		POJOPrimeNumbersIntegerList primeNumbers = new POJOPrimeNumbersIntegerList(primeCount);
 
 		//calculate primeNumbers, parse and set
 		primeNumbers.setPrimeNumberList(CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount)));
+
+		System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
 
 		return primeNumbers;
 	}
@@ -34,6 +39,9 @@ public class PrimeNumbersController {
 	@GetMapping("/getPrimeNumbersString")
 	@ResponseBody
 	public POJOPrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
+
+		System.out.println("Connection established");
+		System.out.println("Received prime numbers request for string with value " + primeCount);
 
 		//calculate prime numbers
 		Object[] listOfPrimeNumbers = CalculatePrimeNumbers.calculate(primeCount).toArray();
@@ -44,6 +52,8 @@ public class PrimeNumbersController {
 		// create JSON container object
 		POJOPrimeNumbersString primeNumbers = new POJOPrimeNumbersString(primeNumbersString);
 
+		System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
+
 		return primeNumbers;
 	}
 
@@ -51,6 +61,9 @@ public class PrimeNumbersController {
 	@GetMapping("/getPrimeNumbersObject")
 	@ResponseBody
 	public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value="value", required=true) int primeCount) {
+
+		System.out.println("Connection established");
+		System.out.println("Received prime numbers request for struct with value " + primeCount);
 
 		//calculate prime numbers
 		int[] integerListOfPrimeNumbers = CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount));
@@ -61,6 +74,8 @@ public class PrimeNumbersController {
 
 		// create JSON container Object
 		POJOPrimeNumbersObject primeNumbers = new POJOPrimeNumbersObject(integerListOfPrimeNumbers, primeNumbersString);
+
+		System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
 
 		return primeNumbers;
 	}

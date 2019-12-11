@@ -40,6 +40,8 @@ class CalculatePrimeNumbers {
      */
     static List calculate(int number){
 
+        System.out.println("Calculating prime numbers...");
+
         //generate stream of integer values
         List<Integer> primes = IntStream.range(2, Integer.MAX_VALUE)
                 .filter(n -> isPrime(n))
