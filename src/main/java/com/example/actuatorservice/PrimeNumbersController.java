@@ -19,7 +19,9 @@ public class PrimeNumbersController {
 	@GetMapping("/")
 	@ResponseBody
 	public String responseCalculationInteger(){
-		return "<h1>Hello<h1>";
+		return "<h1>Hello</h1>\n" +
+				"<p>Willkommen auf unserer tollen Startseite.</p>\n" +
+				"<p>Wir nehmen an, dass du wissen möchtest, wie man an diese Primzahlen dran kommt..\"</p>";
 	}
 
 	//http://localhost:9000/getPrimeNumbersInt?value=5
