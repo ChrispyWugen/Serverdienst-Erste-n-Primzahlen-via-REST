@@ -41,7 +41,17 @@ public class PrimeNumbersController {
 	public POJOPrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
 
 		System.out.println("Connection established");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		System.out.println("Received prime numbers request for string with value " + primeCount);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 		//calculate prime numbers
 		Object[] listOfPrimeNumbers = CalculatePrimeNumbers.calculate(primeCount).toArray();
