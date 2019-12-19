@@ -38,7 +38,7 @@ class CalculatePrimeNumbers {
      * @param number count of prime numbers
      * @return primes List of prime numbers
      */
-    static List calculate(int number){
+    static List<Integer> calculate(int number){
 
         System.out.println("Calculating prime numbers...");
 
@@ -64,7 +64,7 @@ class CalculatePrimeNumbers {
             return  (number % 2) != 0
                     &&
                     IntStream.rangeClosed(3, (int) Math.sqrt(number))
-                            .filter(n -> n % 2 != 0)
+                            .filter(n -> n % 2 != 0)    //Optimization to check less numbers
                             .noneMatch(n -> (number % n == 0));
     }
 
