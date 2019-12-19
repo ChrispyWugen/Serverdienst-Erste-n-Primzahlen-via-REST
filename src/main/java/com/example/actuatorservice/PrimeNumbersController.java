@@ -23,6 +23,7 @@ public class PrimeNumbersController {
 	}
 
 	//http://localhost:9000/getPrimeNumbersInt?value=5
+	//https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
 	@GetMapping("/getPrimeNumbersInt")
 	@ResponseBody
 	public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value="value", required=true) int primeCount) {
@@ -42,6 +43,7 @@ public class PrimeNumbersController {
 	}
 
 	//http://localhost:9000/getPrimeNumbersString?value=5
+	//https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
 	@GetMapping("/getPrimeNumbersString")
 	@ResponseBody
 	public POJOPrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
@@ -74,6 +76,7 @@ public class PrimeNumbersController {
 	}
 
 	//http://localhost:9000/getPrimeNumbersObject?value=5
+	//https://floating-gorge-01332.herokuapp.com/getPrimeNumbersObject?value=5
 	@GetMapping("/getPrimeNumbersObject")
 	@ResponseBody
 	public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value="value", required=true) int primeCount) {

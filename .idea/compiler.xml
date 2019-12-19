@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="actuator-service" />
+        <module name="CW_Restful_WS_with_Spring_Boot" />
       </profile>
     </annotationProcessing>
   </component>
