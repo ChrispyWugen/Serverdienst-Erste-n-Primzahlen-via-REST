@@ -16,89 +16,86 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PrimeNumbersController {
 
-	@GetMapping("/")
-	@ResponseBody
-	public String responseCalculationInteger(){
-		return "<h1>Hello</h1>\n" +
-				"<p>Willkommen auf unserer tollen Startseite.</p>\n" +
-				"<p>Wir nehmen an, dass du wissen möchtest, wie man an diese Primzahlen dran kommt..\"</p>";
-	}
+    @GetMapping("/")
+    @ResponseBody
+    public String homeResponse() {
+        //TODO: Besserer Welcome Screen
+        return "Hallo! Willkommen auf unserer Seite!";
+    }
 
-	//http://localhost:9000/getPrimeNumbersInt?value=5
-	@GetMapping("/getPrimeNumbersInt")
-	@ResponseBody
-	public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value="value", required=true) int primeCount) {
+    //http://localhost:9000/getPrimeNumbersInt?value=5
+    @GetMapping("/getPrimeNumbersInt")
+    @ResponseBody
+    public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value = "value", required = true) int primeCount) {
 
-		System.out.println("Connection established");
-		System.out.println("Received prime numbers request for integer list with value " + primeCount);
+        System.out.println("Connection established");
+        System.out.println("Received prime numbers request for integer list with value " + primeCount);
 
-		//create JSON container object
-		POJOPrimeNumbersIntegerList primeNumbers = new POJOPrimeNumbersIntegerList(primeCount);
+        //create JSON container object
+        POJOPrimeNumbersIntegerList primeNumbers = new POJOPrimeNumbersIntegerList(primeCount);
 
-		//calculate primeNumbers, parse and sets
-		primeNumbers.setPrimeNumberList(CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount)));
+        //calculate primeNumbers, parse and sets
+        primeNumbers.setPrimeNumberList(CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount)));
 
-		System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
+        System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
 
-		return primeNumbers;
-	}
+        return primeNumbers;
+    }
 
-	//http://localhost:9000/getPrimeNumbersString?value=5
-	@GetMapping("/getPrimeNumbersString")
-	@ResponseBody
-	public POJOPrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
+    //http://localhost:9000/getPrimeNumbersString?value=5
+    @GetMapping("/getPrimeNumbersString")
+    @ResponseBody
+    public POJOPrimeNumbersString responseCalculationString(@RequestParam(value = "value", required = true) int primeCount) {
 
-		System.out.println("Connection established");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Received prime numbers request for string with value " + primeCount);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+        System.out.println("Connection established");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Received prime numbers request for string with value " + primeCount);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-		//calculate prime numbers
-		Object[] listOfPrimeNumbers = CalculatePrimeNumbers.calculate(primeCount).toArray();
+        //calculate prime numbers
+        Object[] listOfPrimeNumbers = CalculatePrimeNumbers.calculate(primeCount).toArray();
 
-		//convert list into String with whitespaces
-		String primeNumbersString = CalculatePrimeNumbers.convertArrayToString(listOfPrimeNumbers);
+        //convert list into String with whitespaces
+        String primeNumbersString = CalculatePrimeNumbers.convertArrayToString(listOfPrimeNumbers);
 
-		// create JSON container object
-		POJOPrimeNumbersString primeNumbers = new POJOPrimeNumbersString(primeNumbersString);
+        // create JSON container object
+        POJOPrimeNumbersString primeNumbers = new POJOPrimeNumbersString(primeNumbersString);
 
-		System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
+        System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
 
-		return primeNumbers;
-	}
+        return primeNumbers;
+    }
 
-	//http://localhost:9000/getPrimeNumbersObject?value=5
-	@GetMapping("/getPrimeNumbersObject")
-	@ResponseBody
-	public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value="value", required=true) int primeCount) {
+    //http://localhost:9000/getPrimeNumbersObject?value=5
+    @GetMapping("/getPrimeNumbersObject")
+    @ResponseBody
+    public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value = "value", required = true) int primeCount) {
 
-		System.out.println("Connection established");
-		System.out.println("Received prime numbers request for struct with value " + primeCount);
+        System.out.println("Connection established");
+        System.out.println("Received prime numbers request for struct with value " + primeCount);
 
-		//calculate prime numbers
-		int[] integerListOfPrimeNumbers = CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount));
-		Object[] objectListOfPrimeNumbers = CalculatePrimeNumbers.convertToObjectArray(integerListOfPrimeNumbers);
+        //calculate prime numbers
+        int[] integerListOfPrimeNumbers = CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount));
+        Object[] objectListOfPrimeNumbers = CalculatePrimeNumbers.convertToObjectArray(integerListOfPrimeNumbers);
 
-		//convert list into String with whitespaces
-		String primeNumbersString = CalculatePrimeNumbers.convertArrayToString(objectListOfPrimeNumbers);
+        //convert list into String with whitespaces
+        String primeNumbersString = CalculatePrimeNumbers.convertArrayToString(objectListOfPrimeNumbers);
 
-		// create JSON container Object
-		POJOPrimeNumbersObject primeNumbers = new POJOPrimeNumbersObject(integerListOfPrimeNumbers, primeNumbersString);
+        // create JSON container Object
+        POJOPrimeNumbersObject primeNumbers = new POJOPrimeNumbersObject(integerListOfPrimeNumbers, primeNumbersString);
 
-		System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
+        System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
 
-		return primeNumbers;
-	}
-
-
+        return primeNumbers;
+    }
 
 
 }
