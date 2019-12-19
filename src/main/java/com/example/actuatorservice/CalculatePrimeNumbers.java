@@ -64,7 +64,7 @@ class CalculatePrimeNumbers {
             return  (number % 2) != 0
                     &&
                     IntStream.rangeClosed(3, (int) Math.sqrt(number))
-                            .filter(n -> n % 2 != 0)
+                            .filter(n -> n % 2 != 0)    //Optimization to check less numbers
                             .noneMatch(n -> (number % n == 0));
     }
 
