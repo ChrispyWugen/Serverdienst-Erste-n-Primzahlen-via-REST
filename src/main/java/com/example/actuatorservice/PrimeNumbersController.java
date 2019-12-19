@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PrimeNumbersController {
 
+	@GetMapping("/")
+	@ResponseBody
+	public String responseCalculationInteger(){
+		return "<h1>Hello<h1>";
+	}
+
 	//http://localhost:9000/getPrimeNumbersInt?value=5
 	@GetMapping("/getPrimeNumbersInt")
 	@ResponseBody
