@@ -27,7 +27,7 @@ public class PrimeNumbersController {
 		//create JSON container object
 		POJOPrimeNumbersIntegerList primeNumbers = new POJOPrimeNumbersIntegerList(primeCount);
 
-		//calculate primeNumbers, parse and set
+		//calculate primeNumbers, parse and sets
 		primeNumbers.setPrimeNumberList(CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount)));
 
 		System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
