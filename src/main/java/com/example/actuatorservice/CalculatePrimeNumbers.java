@@ -38,7 +38,7 @@ class CalculatePrimeNumbers {
      * @param number count of prime numbers
      * @return primes List of prime numbers
      */
-    static List calculate(int number){
+    static List<Integer> calculate(int number){
 
         System.out.println("Calculating prime numbers...");
 
