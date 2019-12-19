@@ -20,7 +20,7 @@ public class PrimeNumbersApplication {
 		System.out.println("--------------------");
 		System.out.println("Server start");
 		System.out.println("--------------------");
-		System.out.println("Accept modus: waiting for connection...");
+		System.out.println("Accept modus: waiting for connection...\n\n\n");
 
 	}
 
