@@ -18,23 +18,15 @@ public class PrimeNumbersController {
 
     @GetMapping("/")
     @ResponseBody
-    public String homeResponse() {
-        //TODO: Besserer Welcome Screen
-        return "Hallo! Willkommen auf unserer Seite!";
+    public String responseCalculationInteger(){
+        return "<h1>Hello<h1>";
     }
 
-<<<<<<< HEAD
-	//http://localhost:9000/getPrimeNumbersInt?value=5
-	//https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
-	@GetMapping("/getPrimeNumbersInt")
-	@ResponseBody
-	public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value="value", required=true) int primeCount) {
-=======
     //http://localhost:9000/getPrimeNumbersInt?value=5
+    //https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
     @GetMapping("/getPrimeNumbersInt")
     @ResponseBody
-    public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value = "value", required = true) int primeCount) {
->>>>>>> 43b5b3e5dfc559e145a914bd814409a9995c729f
+    public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value="value", required=true) int primeCount) {
 
         System.out.println("Connection established");
         System.out.println("Received prime numbers request for integer list with value " + primeCount);
@@ -50,18 +42,11 @@ public class PrimeNumbersController {
         return primeNumbers;
     }
 
-<<<<<<< HEAD
-	//http://localhost:9000/getPrimeNumbersString?value=5
-	//https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
-	@GetMapping("/getPrimeNumbersString")
-	@ResponseBody
-	public POJOPrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
-=======
     //http://localhost:9000/getPrimeNumbersString?value=5
+    //https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
     @GetMapping("/getPrimeNumbersString")
     @ResponseBody
-    public POJOPrimeNumbersString responseCalculationString(@RequestParam(value = "value", required = true) int primeCount) {
->>>>>>> 43b5b3e5dfc559e145a914bd814409a9995c729f
+    public POJOPrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
 
         System.out.println("Connection established");
         try {
@@ -90,18 +75,11 @@ public class PrimeNumbersController {
         return primeNumbers;
     }
 
-<<<<<<< HEAD
-	//http://localhost:9000/getPrimeNumbersObject?value=5
-	//https://floating-gorge-01332.herokuapp.com/getPrimeNumbersObject?value=5
-	@GetMapping("/getPrimeNumbersObject")
-	@ResponseBody
-	public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value="value", required=true) int primeCount) {
-=======
     //http://localhost:9000/getPrimeNumbersObject?value=5
+    //https://floating-gorge-01332.herokuapp.com/getPrimeNumbersObject?value=5
     @GetMapping("/getPrimeNumbersObject")
     @ResponseBody
-    public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value = "value", required = true) int primeCount) {
->>>>>>> 43b5b3e5dfc559e145a914bd814409a9995c729f
+    public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value="value", required=true) int primeCount) {
 
         System.out.println("Connection established");
         System.out.println("Received prime numbers request for struct with value " + primeCount);
@@ -120,6 +98,8 @@ public class PrimeNumbersController {
 
         return primeNumbers;
     }
+
+
 
 
 }
