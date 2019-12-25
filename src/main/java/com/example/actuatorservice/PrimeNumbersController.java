@@ -5,6 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Stream;
+
 /**
  * An implementation of PrimeNumbersController
  * in actuator-service
@@ -16,50 +23,78 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PrimeNumbersController {
 
+    private static int SLEEP_TIME = 0;
+
     @GetMapping("/")
     @ResponseBody
-    public String responseCalculationInteger(){
-        return "<h1>Hello<h1>";
+    public String responseCalculationInteger() {
+
+        try {
+            return fileToString("public/index.html");
+        } catch (IOException e) {
+            System.err.println("Could not read index.html");
+            System.err.println(e.getLocalizedMessage());
+        }
+
+        return "<h2>Hey, herzlich willkommen auf der &Uuml;bersichtsseite zu unserer Top-API f&uuml;r Primzahlen.</h2>\n" +
+                "<hr />\n" +
+                "<p>Primzahl-Antwort als Integer-Liste:</p>\n" +
+                "<p><code><a href=\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5</a></code></p>\n" +
+                "<p><code></code></p>\n" +
+                "<hr />\n" +
+                "<p>Primzahl-Antwort als String-Liste:</p>\n" +
+                "<p><code><a href=\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5</a></code></p>\n" +
+                "<p><code></code></p>\n" +
+                "<hr />\n" +
+                "<p>Primzahl-Antwort als Objekt mit beiden Besandteilen:</p>\n" +
+                "<p><code><a href=\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5</a></code></p>\n" +
+                "<p><code></code></p>\n" +
+                "<hr />\n" +
+                "<p>Optional kann der Parameter 'delay' angegeben werden. Damit wartet das Programm die entsprechende Anzahl an Millisekunden zwischen einigen Befehlen, damit auf der Serverseite einzelne Schritte nachverfolgt werden k&ouml;nnen. <br />Bsp.: https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5&amp;<strong>delay=10</strong></p>";
     }
 
     //http://localhost:9000/getPrimeNumbersInt?value=5
-    //https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
+    //https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5
     @GetMapping("/getPrimeNumbersInt")
     @ResponseBody
-    public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value="value", required=true) int primeCount) {
+    public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value = "value", required = true) int primeCount,
+                                                                  @RequestParam(value = "delay", required = false) Integer delay) {
 
-        System.out.println("Connection established");
-        System.out.println("Received prime numbers request for integer list with value " + primeCount);
+        System.out.println("[Integer] Connection established");
+        System.out.println("[Integer] Received Request for Integer List with " + primeCount + " primes");
+        sleep(delay);
 
         //create JSON container object
-        POJOPrimeNumbersIntegerList primeNumbers = new POJOPrimeNumbersIntegerList(primeCount);
+        POJOPrimeNumbersIntegerList primeNumberIntegerListObject = new POJOPrimeNumbersIntegerList(primeCount);
+        sleep(delay);
 
         //calculate primeNumbers, parse and sets
-        primeNumbers.setPrimeNumberList(CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount)));
+        List<Integer> primeNumberList = CalculatePrimeNumbers.calculate(primeCount);
+        int[] primeNumberArray = CalculatePrimeNumbers.toIntArray(primeNumberList);
 
-        System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
+        primeNumberIntegerListObject.setPrimeNumberList(primeNumberArray);
 
-        return primeNumbers;
+        System.out.println("[Integer] Returning result...\n" +
+                "[Integer] Closing Connection and Switching Back to Waiting\n" +
+                "------------------------------------------------------------");
+
+        //return the object to request as a response
+        return primeNumberIntegerListObject;
     }
 
     //http://localhost:9000/getPrimeNumbersString?value=5
     //https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5
     @GetMapping("/getPrimeNumbersString")
     @ResponseBody
-    public POJOPrimeNumbersString responseCalculationString(@RequestParam(value="value", required=true) int primeCount) {
+    public POJOPrimeNumbersString responseCalculationString(@RequestParam(value = "value", required = true) int primeCount,
+                                                            @RequestParam(value = "delay", required = false) Integer delay) {
 
-        System.out.println("Connection established");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Received prime numbers request for string with value " + primeCount);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println("[String] Connection established");
+        sleep(delay);
+
+        System.out.println("[String] Received prime numbers request for string with value " + primeCount);
+        System.out.println("[String] Calculating prime numbers and packing object");
+        sleep(delay);
 
         //calculate prime numbers
         Object[] listOfPrimeNumbers = CalculatePrimeNumbers.calculate(primeCount).toArray();
@@ -70,7 +105,9 @@ public class PrimeNumbersController {
         // create JSON container object
         POJOPrimeNumbersString primeNumbers = new POJOPrimeNumbersString(primeNumbersString);
 
-        System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
+        System.out.println("[String] Returning result...\n" +
+                "[String] Closing Connection and Switching Back to Waiting\n" +
+                "------------------------------------------------------------");
 
         return primeNumbers;
     }
@@ -79,10 +116,12 @@ public class PrimeNumbersController {
     //https://floating-gorge-01332.herokuapp.com/getPrimeNumbersObject?value=5
     @GetMapping("/getPrimeNumbersObject")
     @ResponseBody
-    public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value="value", required=true) int primeCount) {
+    public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value = "value", required = true) int primeCount,
+                                                            @RequestParam(value = "delay", required = false) Integer delay) {
 
-        System.out.println("Connection established");
-        System.out.println("Received prime numbers request for struct with value " + primeCount);
+        System.out.println("[Object] Connection established");
+        System.out.println("[Object] Received prime numbers request for struct with value " + primeCount);
+        sleep(delay);
 
         //calculate prime numbers
         int[] integerListOfPrimeNumbers = CalculatePrimeNumbers.toIntArray(CalculatePrimeNumbers.calculate(primeCount));
@@ -94,12 +133,34 @@ public class PrimeNumbersController {
         // create JSON container Object
         POJOPrimeNumbersObject primeNumbers = new POJOPrimeNumbersObject(integerListOfPrimeNumbers, primeNumbersString);
 
-        System.out.println("Returning result...\nClosing connection...\n--------------------\nAccept modus: waiting for connection...");
+        System.out.println("[Object] Returning result...\n" +
+                "[Object] Closing Connection and Switching Back to Waiting\n" +
+                "------------------------------------------------------------");
 
         return primeNumbers;
     }
 
+    private static void sleep(Integer ms) {
 
+        try {
+            if (ms == null){
+                Thread.sleep(SLEEP_TIME);
+            } else {
+                Thread.sleep(ms);
+            }
+        } catch (InterruptedException e) {
+            System.err.println(e.getLocalizedMessage());
+        }
+    }
+
+    private static String fileToString(String filePath) throws IOException {
+        StringBuilder contentBuilder = new StringBuilder();
+        Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8);
+        //stream.forEach(s -> contentBuilder.append(s).append("\n"));
+        stream.forEach(contentBuilder::append);
+
+        return contentBuilder.toString();
+    }
 
 
 }
