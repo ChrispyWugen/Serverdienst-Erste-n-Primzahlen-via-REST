@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
 /**
@@ -59,9 +60,9 @@ public class PrimeNumbersController {
     @ResponseBody
     public POJOPrimeNumbersIntegerList responseCalculationInteger(@RequestParam(value = "value", required = true) int primeCount,
                                                                   @RequestParam(value = "delay", required = false) Integer delay) {
-
-        System.out.println("[Integer] Connection established");
-        System.out.println("[Integer] Received Request for Integer List with " + primeCount + " primes");
+        int requestId = getRequestId();
+        System.out.println(String.format("[%d | Integer] Connection established", requestId));
+        System.out.println(String.format("[%d | Integer] Received Request for Integer List with " + primeCount + " primes", requestId));
         sleep(delay);
 
         //create JSON container object
@@ -74,9 +75,9 @@ public class PrimeNumbersController {
 
         primeNumberIntegerListObject.setPrimeNumberList(primeNumberArray);
 
-        System.out.println("[Integer] Returning result...\n" +
-                "[Integer] Closing Connection and Switching Back to Waiting\n" +
-                "------------------------------------------------------------");
+        System.out.println(String.format("[%d | Integer] Returning result...\n" +
+                "[%d | Integer] Closing Connection and Switching Back to Waiting\n" +
+                "------------------------------------------------------------", requestId, requestId));
 
         //return the object to request as a response
         return primeNumberIntegerListObject;
@@ -88,12 +89,12 @@ public class PrimeNumbersController {
     @ResponseBody
     public POJOPrimeNumbersString responseCalculationString(@RequestParam(value = "value", required = true) int primeCount,
                                                             @RequestParam(value = "delay", required = false) Integer delay) {
-
-        System.out.println("[String] Connection established");
+        int requestId = getRequestId();
+        System.out.println(String.format("[%d | String] Connection established",requestId));
         sleep(delay);
 
-        System.out.println("[String] Received prime numbers request for string with value " + primeCount);
-        System.out.println("[String] Calculating prime numbers and packing object");
+        System.out.println(String.format("[%d | String] Received prime numbers request for string with value " + primeCount,requestId));
+        System.out.println(String.format("[%d | String] Calculating prime numbers and packing object",requestId));
         sleep(delay);
 
         //calculate prime numbers
@@ -105,9 +106,9 @@ public class PrimeNumbersController {
         // create JSON container object
         POJOPrimeNumbersString primeNumbers = new POJOPrimeNumbersString(primeNumbersString);
 
-        System.out.println("[String] Returning result...\n" +
-                "[String] Closing Connection and Switching Back to Waiting\n" +
-                "------------------------------------------------------------");
+        System.out.println(String.format("[%d | String] Returning result...\n" +
+                "[%d | String] Closing Connection and Switching Back to Waiting\n" +
+                "------------------------------------------------------------",requestId,requestId));
 
         return primeNumbers;
     }
@@ -118,9 +119,9 @@ public class PrimeNumbersController {
     @ResponseBody
     public POJOPrimeNumbersObject responseCalculationObject(@RequestParam(value = "value", required = true) int primeCount,
                                                             @RequestParam(value = "delay", required = false) Integer delay) {
-
-        System.out.println("[Object] Connection established");
-        System.out.println("[Object] Received prime numbers request for struct with value " + primeCount);
+        int requestId = getRequestId();
+        System.out.println(String.format("[%d | Object] Connection established",requestId));
+        System.out.println(String.format("[%d | Object] Received prime numbers request for struct with value " + primeCount,requestId));
         sleep(delay);
 
         //calculate prime numbers
@@ -133,9 +134,9 @@ public class PrimeNumbersController {
         // create JSON container Object
         POJOPrimeNumbersObject primeNumbers = new POJOPrimeNumbersObject(integerListOfPrimeNumbers, primeNumbersString);
 
-        System.out.println("[Object] Returning result...\n" +
-                "[Object] Closing Connection and Switching Back to Waiting\n" +
-                "------------------------------------------------------------");
+        System.out.println(String.format("[%d | Object] Returning result...\n" +
+                "[%d | Object] Closing Connection and Switching Back to Waiting\n" +
+                "------------------------------------------------------------",requestId,requestId));
 
         return primeNumbers;
     }
@@ -143,7 +144,7 @@ public class PrimeNumbersController {
     private static void sleep(Integer ms) {
 
         try {
-            if (ms == null){
+            if (ms == null) {
                 Thread.sleep(SLEEP_TIME);
             } else {
                 Thread.sleep(ms);
@@ -160,6 +161,15 @@ public class PrimeNumbersController {
         stream.forEach(contentBuilder::append);
 
         return contentBuilder.toString();
+    }
+
+    /**
+     * returns a random number that can be used as a request id
+     *
+     * @return random integer
+     */
+    private static int getRequestId() {
+        return ThreadLocalRandom.current().nextInt(100000);
     }
 
 
