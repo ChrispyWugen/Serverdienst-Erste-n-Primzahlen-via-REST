@@ -38,20 +38,20 @@ public class PrimeNumbersController {
         }
 
         return "<h2>Hey, herzlich willkommen auf der &Uuml;bersichtsseite zu unserer Top-API f&uuml;r Primzahlen.</h2>\n" +
-                "<hr />\n" +
-                "<p>Primzahl-Antwort als Integer-Liste:</p>\n" +
-                "<p><code><a href=\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5</a></code></p>\n" +
-                "<p><code></code></p>\n" +
-                "<hr />\n" +
-                "<p>Primzahl-Antwort als String-Liste:</p>\n" +
-                "<p><code><a href=\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5</a></code></p>\n" +
-                "<p><code></code></p>\n" +
-                "<hr />\n" +
-                "<p>Primzahl-Antwort als Objekt mit beiden Besandteilen:</p>\n" +
-                "<p><code><a href=\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5</a></code></p>\n" +
-                "<p><code></code></p>\n" +
-                "<hr />\n" +
-                "<p>Optional kann der Parameter 'delay' angegeben werden. Damit wartet das Programm die entsprechende Anzahl an Millisekunden zwischen einigen Befehlen, damit auf der Serverseite einzelne Schritte nachverfolgt werden k&ouml;nnen. <br />Bsp.: https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5&amp;<strong>delay=10</strong></p>";
+                "                <hr />\n" +
+                "                <p>Primzahl-Antwort als Integer-Liste:</p>\n" +
+                "                <p><code><a href=\\\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\\\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5</a></code></p>\n" +
+                "                <p><code></code></p>\n" +
+                "                <hr />\n" +
+                "                <p>Primzahl-Antwort als String-Liste:</p>\n" +
+                "                <p><code><a href=\\\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5\\\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersString?value=5</a></code></p>\n" +
+                "                <p><code></code></p>\n" +
+                "                <hr />\n" +
+                "                <p>Primzahl-Antwort als Objekt mit beiden Besandteilen:</p>\n" +
+                "                <p><code><a href=\\\"https://floating-gorge-01332.herokuapp.com/getPrimeNumbersObject?value=5\\\">https://floating-gorge-01332.herokuapp.com/getPrimeNumbersObject?value=5</a></code></p>\n" +
+                "                <p><code></code></p>\n" +
+                "                <hr />\n" +
+                "                <p>Optional kann der Parameter 'delay' angegeben werden. Damit wartet das Programm die entsprechende Anzahl an Millisekunden zwischen einigen Befehlen, damit auf der Serverseite einzelne Schritte nachverfolgt werden k&ouml;nnen. <br />Bsp.: https://floating-gorge-01332.herokuapp.com/getPrimeNumbersInt?value=5&amp;<strong>delay=10</strong></p>";
     }
 
     //http://localhost:9000/getPrimeNumbersInt?value=5
